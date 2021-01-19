@@ -1,0 +1,22 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "lib": [
+        "es2017"
+      ],
+      "rootDir": "proxy/src",
+      "strictFunctionTypes": true,
+      "noUnusedLocals": true,
+      "noFallthroughCasesInSwitch": true,
+      "esModuleInterop": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "resolveJsonModule": true,
+      "baseUrl": "."
+    },
+    "exclude": [
+      "./src"
+    ],
+  }

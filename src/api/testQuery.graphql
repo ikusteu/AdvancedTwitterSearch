@@ -1,0 +1,7 @@
+query TestQuery($query: String) {
+  tweets(query: $query)
+    @rest(type: "Tweet", path: "2/tweets/search/recent?{args}") {
+    id
+    text
+  }
+}
