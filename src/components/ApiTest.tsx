@@ -11,7 +11,7 @@ const ApiTest: React.FC = () => {
     },
   })
 
-  console.log("nemoj")
+  console.log("kaj je s ovim")
   return (
     <div>
       <div>Hello</div>
