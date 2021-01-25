@@ -7,6 +7,6 @@ const App: React.FC = () => {
   return <ApiTest />;
 };
 
-console.log("nesto");
+const unusedVar = 1;
 
 export default App;
