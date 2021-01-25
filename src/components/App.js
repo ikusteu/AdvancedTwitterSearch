@@ -3,7 +3,7 @@ import React from "react";
 import ApiTest from "./ApiTest";
 
 // component function
-const App: React.FC = () => {
+const App = () => {
   return <ApiTest />;
 };
 
