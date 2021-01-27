@@ -34,10 +34,19 @@ describe('rendering test', () => {
     expect(document.querySelector(`#${mockedProps.id}`)).not.toBeNull();
   });
 
-  test('should not render label element if abel is not specified', () => {
+  test('should not render label element if label is not specified', () => {
     const name = 'password';
     render(<TextInput name={name} value={value} onChange={onChange} />);
     expect(document.querySelector('label')).toBeNull();
+  });
+
+  test('should render label element if label is specified', () => {
+    const name = 'password';
+    const label = 'Password';
+    render(
+      <TextInput name={name} value={value} label={label} onChange={onChange} />
+    );
+    expect(document.querySelector('label')).not.toBeNull();
   });
 
   test("should fallback to using 'name' prop for fields if not provided with optional props", () => {
