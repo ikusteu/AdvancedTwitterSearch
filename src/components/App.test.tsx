@@ -4,8 +4,13 @@ import "@testing-library/jest-dom";
 import App from "./App";
 
 describe("If everthing is fine", () => {
-  test("should render Hello World", async () => {
+  test("should render input fields and feed sections", async () => {
     render(<App />);
-    expect(await screen.findByText(/hello world/i)).toBeInTheDocument();
+
+    const inputFieldsElement = document.getElementById("input-fields");
+    const feedElement = document.getElementById("feed");
+
+    expect(inputFieldsElement).toBeInTheDocument();
+    expect(feedElement).toBeInTheDocument();
   });
 });
