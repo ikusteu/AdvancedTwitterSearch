@@ -1,10 +1,6 @@
 {
-    "compilerOptions": {
-    "lib": [
-      "dom",
-      "es6",
-      "esnext.asynciterable"
-    ],
+  "compilerOptions": {
+    "lib": ["dom", "es6", "esnext.asynciterable"],
     "jsx": "react",
     "noEmit": true,
     "sourceMap": true,
@@ -16,20 +12,17 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "allowSyntheticDefaultImports": true,
-    },
-    "include": [
-        "./src",
-        "./proxy"
-    ],
-    "exclude": [
-        "node_modules",
-        "build",
-        "scripts",
-        "acceptance-tests",
-        "webpack",
-        "jest",
-        "src/setupTests.ts",
-        "webpack.config.js"
-      ]
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["./src", "./proxy"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts",
+    "webpack.config.js"
+  ]
 }

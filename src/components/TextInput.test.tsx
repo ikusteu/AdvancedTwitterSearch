@@ -1,6 +1,3 @@
-// prefixes
-import 'regenerator-runtime/runtime';
-
 // import from node modules
 import React from 'react';
 import { screen, render, fireEvent } from '@testing-library/react';
@@ -15,7 +12,7 @@ const onChange = jest.fn<void, Parameters<TextInputOnChange>>((e) => {
 });
 const value = 'value';
 
-// start tests
+// begin tests
 describe('rendering test', () => {
   test('should render mocked component when passed mocked props', () => {
     const mockedProps = {
@@ -99,6 +96,5 @@ describe('functionality test', () => {
     // username should be updated while password remains the same
     expect(state.username).toEqual(userInput);
     expect(state.password).toEqual(password);
-    screen.debug();
   });
 });

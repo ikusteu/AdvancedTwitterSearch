@@ -1,5 +1,4 @@
 // import from node modules
-import { getStoreKeyName } from '@apollo/client/utilities';
 import React from 'react';
 
 // import from local components
@@ -7,7 +6,7 @@ import StyledTextInput from './styled/StyledTextInput';
 
 // local types and interfaces
 export interface TextInputOnChange {
-  (event: React.ChangeEvent<HTMLInputElement>, name?: string): void;
+  (event: React.ChangeEvent<HTMLInputElement>, name: string): void;
 }
 
 interface TextInputProps {
@@ -40,7 +39,7 @@ const TextInput: React.FC<TextInputProps> = ({
         id={props.id || name}
         type='text'
         placeholder={props.placeholder || name}
-        value={value}
+        value={value || ''}
         onChange={(event) => onChange(event, name)}
       />
     </>

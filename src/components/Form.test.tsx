@@ -1,14 +1,22 @@
+// polyfills
 import 'regenerator-runtime/runtime';
+
+// import from node modules
 import React from 'react';
-import InputForm from './InputForm';
-import TextInput from './TextInput';
-import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+// import types
+import '@testing-library/jest-dom';
+
+// import from local components
+import InputForm from './InputForm';
+import TextInput from './TextInput';
+
+// begin tests
 describe('render test', () => {
   beforeEach(() => {
-    render(<InputForm>{() => <div>Child</div>}</InputForm>);
+    render(<InputForm onSubmit={() => {}}>{() => <div>Child</div>}</InputForm>);
   });
 
   test('should render form element', () => {
@@ -26,20 +34,35 @@ describe('test onSubmit functionality', () => {
     // do nothing
   });
 
-  test('shuld call on submit function without rerendering', async () => {
+  beforeEach(() => {
+    onSubmit.mockClear();
     render(
-      <InputForm onSubmit={onSubmit}>
-        {() => <input id='textfield' value='ss' type='text' />}
+      <InputForm onSubmit={onSubmit} initialValues={{ name: '' }}>
+        {({ onChange, values }) => (
+          <TextInput name='name' onChange={onChange} value={values.name} />
+        )}
       </InputForm>
     );
+  });
 
-    const input = 'search';
-    const textBox = screen.getByRole('textbox');
+  test('should call onSubmit on input(state) change with 2s debounce', (done) => {
+    userEvent.type(screen.getByRole('textbox'), 'Ivan');
 
-    fireEvent.submit(textBox);
-    expect(onSubmit).toHaveBeenCalledTimes(1);
+    setTimeout(() => {
+      expect(onSubmit).toHaveBeenCalledTimes(1);
+      done();
+    }, 2000);
+  });
 
-    /* check for rerendering after submit ??? */
+  /* check for rerendering after submit ??? */
+
+  test('should not call onSubmit within 2s of input change', (done) => {
+    userEvent.type(screen.getByRole('textbox'), 'Ivan');
+
+    setTimeout(() => {
+      expect(onSubmit).not.toHaveBeenCalled();
+      done();
+    }, 1500);
   });
 });
 
@@ -51,7 +74,7 @@ describe('test onChange and values passed down to render prop', () => {
 
   beforeEach(() => {
     render(
-      <InputForm initialValues={initialValues}>
+      <InputForm initialValues={initialValues} onSubmit={() => {}}>
         {({ values, onChange }) => (
           <>
             <TextInput name='name' value={values.name} onChange={onChange} />
